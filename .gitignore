@@ -1,0 +1,6 @@
+_MTN
+.mtn*
+.rspec
+.simplecov
+*.sw?
+
