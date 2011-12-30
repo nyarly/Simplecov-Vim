@@ -15,7 +15,7 @@ module Corundum
     cutter = GemCutter.new(tk,gem)
     email = Email.new(tk)
     vc = Git.new(tk) do |vc|
-      #vc.branch = "info.judsonlester."
+      vc.branch = "master"
     end
     task tk.finished_files.build => vc["is_checked_in"]
     docs = YARDoc.new(tk)
