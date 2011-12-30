@@ -3,4 +3,10 @@ _MTN
 .rspec
 .simplecov
 *.sw?
+corundum
+.bundle
+doc/coverage
+doc/Specifications
+last_run
+pkg
 

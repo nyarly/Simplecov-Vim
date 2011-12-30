@@ -1,4 +1,4 @@
-require 'ftools'
+#require 'ftools'
 require 'fileutils'
 
 module FileSandbox
@@ -34,7 +34,7 @@ module FileSandbox
   end
 
   attr_reader :sandbox
-  
+
   def in_sandbox(&block)
     raise "I expected to create a sandbox as you passed in a block to me" if !block_given?
 
@@ -84,7 +84,7 @@ module FileSandbox
       clean_up
       FileUtils.mkdir_p @root
     end
-    
+
     def [](name)
       SandboxFile.new(File.join(@root, name), name)
     end
@@ -102,17 +102,17 @@ module FileSandbox
           file.content = (options.delete(:with_content) || options.delete(:with_contents) || '')
         end
       end
-      
+
       raise "unexpected keys '#{options.keys.join(', ')}'" unless options.empty?
-      
+
       dir || file
     end
-    
+
     def remove(options)
       name = File.join(@root, options[:file])
       FileUtils.remove_file name
     end
-    
+
     def clean_up
       FileUtils.rm_rf @root
       if File.exists? @root
@@ -124,7 +124,7 @@ module FileSandbox
 
   class SandboxFile
     attr_reader :path
-    
+
     def initialize(path, sandbox_path)
       @path = path
       @sandbox_path = sandbox_path
@@ -141,12 +141,12 @@ module FileSandbox
     def content
       File.read path
     end
-    
+
     def content=(content)
       FileUtils.mkdir_p File.dirname(@path)
       File.open(@path, "w") {|f| f << content}
     end
-    
+
     def binary_content=(content)
       FileUtils.mkdir_p File.dirname(@path)
       File.open(@path, "wb") {|f| f << content}
@@ -159,6 +159,6 @@ module FileSandbox
     alias exists? exist?
     alias contents content
     alias contents= content=
-    alias binary_contents= binary_content=    
+    alias binary_contents= binary_content=
   end
 end

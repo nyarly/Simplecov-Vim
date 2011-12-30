@@ -6,8 +6,10 @@ Gem::Specification.new do |spec|
   }
   spec.authors		= author_list.keys
   spec.email		= spec.authors.map {|name| author_list[name]}
-  spec.summary		= ""
+  spec.summary		= "Vim coverage from Simplecov"
   spec.description	= <<-EndDescription
+  Defines a formatter that emits a vim script to mark up code with coverage
+  data: refactor in deluded confidence!
   EndDescription
 
   spec.rubyforge_project= spec.name.downcase
@@ -17,7 +19,14 @@ Gem::Specification.new do |spec|
   # Do this: y$@"
   # !!find lib bin doc spec spec_help -not -regex '.*\.sw.' -type f 2>/dev/null
   spec.files		= %w[
-
+    lib/simplecov-vim/coverage.vim.erb
+    lib/simplecov-vim/formatter.rb
+    README.md
+    doc/Specifications
+    spec_help/spec_helper.rb
+    spec_help/gem_test_suite.rb
+    spec_help/ungemmer.rb
+    spec_help/file-sandbox.rb
   ]
 
   spec.test_file        = "spec_help/gem_test_suite.rb"
