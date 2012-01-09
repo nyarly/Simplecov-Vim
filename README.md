@@ -5,13 +5,16 @@ This is a formatter for Simplecov that emits a Vim script to mark up code files 
 ## Installing
 
 Add to Gemfile:
+
     gem 'simplecov'
     gem 'simplecov-vim'
 
 and
+
     bundle install
 
 Or 
+
     gem install simplecov simplecov-vim
 
 (If you already have simplecov installed, these commands have some redundancy
@@ -26,6 +29,7 @@ In .simplecov (or where ever you do this)
     end
 
 Run your tests 
+
     rspec -rsimplecov spec
 
 You'll find a shiny new file called coverage.vim in your project root.
