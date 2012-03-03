@@ -24,7 +24,7 @@ Or
 In .simplecov (or where ever you do this)
 
     require 'simplecov-vim/formatter'
-    Simplecov.start do
+    SimpleCov.start do
       formatter SimpleCov::Formatter::VimFormatter
     end
 
