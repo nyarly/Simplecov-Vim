@@ -59,3 +59,12 @@ A slightly more advanced .simplecov configuration file that produces both simple
         SimpleCov::Formatter::VimFormatter
       ]
     end
+
+
+You can customize the output with the with_options method:
+
+    SimpleCov.start 'rails' do
+      SimpleCov::Formatter::VimFormatter.with_options(
+          verbose: false, output_path: 'test/output/coverage.vim'
+      )
+    end
