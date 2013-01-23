@@ -1,5 +1,17 @@
 module SimpleCov::Formatter
+
   class VimFormatter
+    class << self
+      attr_accessor :options
+    end
+    @options = {verbose: false, output_path: "coverage.vim"}
+
+    # call with VimFormatter.with_options(...) to get a VimFormatter class
+    def self.with_options(options)
+      merged_options = self.options.merge(options)
+      return Class.new(self) { @options = merged_options }
+    end
+
     def format(result)
       results = {}
       dir_re = /^#{common_directory(result.filenames)}\//
@@ -16,10 +28,9 @@ module SimpleCov::Formatter
         end
       end
 
-      coverage_output = "coverage.vim"
+      coverage_output = self.class.options[:output_path]
       write_file(template("coverage.vim"), coverage_output, binding)
-
-      puts "Wrote vim coverage script to #{coverage_output}"
+      puts "Wrote vim coverage script to #{coverage_output}" unless self.class.options[:quiet]
     end
 
     def common_directory(files)
