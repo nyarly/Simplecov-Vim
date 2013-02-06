@@ -4,7 +4,7 @@ module SimpleCov::Formatter
     class << self
       attr_accessor :options
     end
-    @options = {verbose: false, output_path: "coverage.vim"}
+    @options = {silent: false, output_path: "coverage.vim"}
 
     # call with VimFormatter.with_options(...) to get a VimFormatter class
     def self.with_options(options)
@@ -30,7 +30,7 @@ module SimpleCov::Formatter
 
       coverage_output = self.class.options[:output_path]
       write_file(template("coverage.vim"), coverage_output, binding)
-      puts "Wrote vim coverage script to #{coverage_output}" unless self.class.options[:quiet]
+      puts "Wrote vim coverage script to #{coverage_output}" unless self.class.options[:silent]
     end
 
     def common_directory(files)

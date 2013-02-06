@@ -23,6 +23,10 @@ describe SimpleCov::Formatter::VimFormatter do
     SimpleCov::Formatter::VimFormatter.new
   end
 
+  let :options_formatter do
+    SimpleCov::Formatter::VimFormatter.with_options(silent: true, output_path: "coverage_custom_path.vim").new
+  end
+
   it "should have an original result with absolute paths" do
     original_result.keys.each do |path|
       path.should =~ %r{\A/}
@@ -40,4 +44,21 @@ describe SimpleCov::Formatter::VimFormatter do
       scriptfile.lines.grep(%r[(['"])nested/pretend_file\1]).should_not == []
     end
   end
+
+  it "should honor options" do
+    stdout_orig = $stdout
+
+    $stdout = StringIO.new
+    formatter.format(result)
+    $stdout.string.should_not be_empty
+
+    $stdout = StringIO.new
+    options_formatter.format(result)
+    $stdout.string.should be_empty
+
+    File::exists?("coverage_custom_path.vim").should be_true
+
+    $stdout = stdout_orig
+  end
+
 end
