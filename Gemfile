@@ -1,6 +1,3 @@
-source "http://judson:hEi4lOra@gems.lrdesign.com"
-source "http://gemcutter.org"
-source "http://gems.github.com"
+source 'https://rubygems.org'
 
 gemspec
-gem "corundum", :path => "../corundum"
