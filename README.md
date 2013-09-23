@@ -38,7 +38,11 @@ Edit a file in your project with Vim.  From Normal mode:
 
     :so coverage.vim
 
-And you should see nice marks in the left column for coverage.  Green >> are covered lines, and red :( are uncovered.  
+And you should see nice marks in the left column for coverage.  Green >> are covered lines, and red :( are uncovered.
+
+If you wish to have the coverage markers updated on each file save, run the following command in Vim:
+
+    :CoverageAutoSourcing
 
 ## Notes
 
