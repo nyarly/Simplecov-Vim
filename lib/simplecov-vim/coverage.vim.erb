@@ -76,6 +76,13 @@ function! s:AutocommandUncov(sourced)
   endif
 endfunction
 
+function! CoverageAutoSourcing()
+  if filereadable("coverage.vim")
+    autocmd BufWritePost *.rb :silent so coverage.vim
+  endif
+endfunction
+command! CoverageAutoSourcing call CoverageAutoSourcing()
+
 command! -nargs=0 Cov call s:CoverageSigns(expand("%:p"))
 command! -nargs=0 Uncov call s:ClearCoverageSigns(expand("%:p"))
 

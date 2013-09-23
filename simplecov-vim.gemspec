@@ -1,59 +1,27 @@
-Gem::Specification.new do |spec|
-  spec.name		= "simplecov-vim"
-  spec.version		= "0.0.1"
-  author_list = {
-    "Judson Lester" => "nyarly@gmail.com"
-  }
-  spec.authors		= author_list.keys
-  spec.email		= spec.authors.map {|name| author_list[name]}
-  spec.summary		= "Vim coverage from Simplecov"
-  spec.description	= <<-EndDescription
+# encoding: utf-8
+
+$:.unshift File.expand_path('../lib', __FILE__)
+require 'simplecov-vim/version'
+
+Gem::Specification.new do |s|
+  s.name          = "simplecov-vim"
+  s.version       = Simplecov::VERSION
+  s.authors       = ["Judson Lester"]
+  s.email         = ["nyarly@gmail.com"]
+  s.homepage      = "https://github.com/nyarly/simplecov-vim"
+  s.summary       = "Vim coverage from Simplecov"
+  s.description   = <<-EndDescription
   Defines a formatter that emits a vim script to mark up code with coverage
   data: refactor in deluded confidence!
   EndDescription
 
-  spec.rubyforge_project= spec.name.downcase
-  spec.homepage        = "http://#{spec.rubyforge_project}.rubyforge.org/"
-  spec.required_rubygems_version = Gem::Requirement.new(">= 0") if spec.respond_to? :required_rubygems_version=
+  s.files         = `git ls-files app lib`.split("\n")
+  s.platform      = Gem::Platform::RUBY
+  s.require_paths = ['lib']
+  s.rubyforge_project = s.name.downcase
+  s.licenses = ["MIT"]
 
-  # Do this: y$@"
-  # !!find lib bin doc spec spec_help -not -regex '.*\.sw.' -type f 2>/dev/null
-  spec.files		= %w[
-    lib/simplecov-vim/coverage.vim.erb
-    lib/simplecov-vim/formatter.rb
-    README.md
-    doc/Specifications
-    spec_help/spec_helper.rb
-    spec_help/gem_test_suite.rb
-    spec_help/ungemmer.rb
-    spec_help/file-sandbox.rb
-  ]
-
-  spec.test_file        = "spec_help/gem_test_suite.rb"
-  spec.licenses = ["MIT"]
-  spec.require_paths = %w[lib/]
-  spec.rubygems_version = "1.3.5"
-
-  if spec.respond_to? :specification_version then
-    current_version = Gem::Specification::CURRENT_SPECIFICATION_VERSION
-    spec.specification_version = 3
-
-    if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
-      spec.add_development_dependency "corundum", "~> 0.0.1"
-    else
-      spec.add_development_dependency "corundum", "~> 0.0.1"
-    end
-  else
-    spec.add_development_dependency "corundum", "~> 0.0.1"
-  end
-
-  spec.has_rdoc		= true
-  spec.extra_rdoc_files = Dir.glob("doc/**/*")
-  spec.rdoc_options	= %w{--inline-source }
-  spec.rdoc_options	+= %w{--main doc/README }
-  spec.rdoc_options	+= ["--title", "#{spec.name}-#{spec.version} RDoc"]
-
-  #spec.add_dependency("postgres", ">= 0.7.1")
-
-  spec.post_install_message = "Another tidy package brought to you by Judson"
+  s.add_development_dependency "bundler", "~> 1.3"
+  s.add_development_dependency "rake"
+  s.add_development_dependency "rspec"
 end
